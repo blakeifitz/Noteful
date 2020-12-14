@@ -1,0 +1,30 @@
+
+.FolderList {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  list-style-type: none;
+  margin: 10 0 0;
+  padding: 0;
+}
+
+.FolderLink {
+  background-color: #27292c;
+  color: #b5b3b3;
+  display: block;
+  font-size: 20px;
+  margin: 0 0 8px auto;
+  max-width: 200px;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 10px 0 0 10px;
+}
+.FolderLink:hover {
+  color:rgb(238, 213, 101);;
+  cursor: pointer;
+}
+.FolderLink.active {
+  background-color: #3f4247;
+}
+
+
