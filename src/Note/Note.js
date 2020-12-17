@@ -15,9 +15,11 @@ export default class Note extends React.Component {
   static contextType = NoteContext;
 
     handleClickDelete = e => {
+      e.preventDefault();
       const noteId = this.props.id
-
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+        this.props.history.push(`/`)
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
+      
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'},
@@ -25,15 +27,15 @@ export default class Note extends React.Component {
     .then(res => {
       if (!res.ok)
         return res.json().then(e => Promise.reject(e))
-      return res.json()
+      
     })
     .then(() =>{
-      this.context.deleteNote(noteId)
+       this.context.deleteNote(noteId)
       }) 
-      .catch(error => {
-        console.error({ error })
-      })
-    }
+    .catch((error) => {
+      console.error({ error })
+    })
+}
     render(){
   return (
     <div className='Note'>
@@ -52,7 +54,7 @@ export default class Note extends React.Component {
         <div className='NoteModified'>
           Modified: {''}
           <span className='Date'>
-            {format(this.props.modified, 'Do MMM YYYY')}
+            {this.props.modified}
           </span>
         </div>
       </div>
@@ -61,7 +63,7 @@ export default class Note extends React.Component {
   }
 }
 Note.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   modified: PropTypes.string,
   }

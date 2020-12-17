@@ -18,21 +18,22 @@ export default class MainList extends React.Component {
   }
   static contextType = NoteContext;
   handleClickDelete = e => {
+    e.preventDefault();
     const {folderId} = this.props.match.params;
     this.props.history.push(`/`)
 
-  fetch(`http://localhost:9090/folders/${folderId}`, {
+  fetch(`http://localhost:8000/api/folders/${folderId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'},
   })
   .then(res => {
-    if (!res.ok)
+    if (!res.ok){
       return res.json().then(e => Promise.reject(e))
-    return res.json()
+    }
   })
   .then(() =>{
-    this.context.deleteFolder(folderId)
+    return this.context.deleteFolder(folderId)
     }) 
     .catch(error => {
       console.error({ error })
@@ -44,6 +45,7 @@ export default class MainList extends React.Component {
    const notesForFolder = grabNotesForFolder( notes,folderId);
   return (
     <section className='MainList'>
+
       <ul>
         {notesForFolder.map(note =>
           <li key={note.id}>
@@ -51,6 +53,7 @@ export default class MainList extends React.Component {
               id={note.id}
               name={note.name}
               modified={note.modified}
+              history={this.props.history}
             />
           </li>
         )}

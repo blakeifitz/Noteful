@@ -16,26 +16,28 @@ handleSubmit = e => {
     const newNote ={
         name: e.target['note-name'].value,
         content: e.target['note-content'].value,
-        folderId: e.target['note-folder-id'].value,
+        folder: e.target['note-folder-id'].value,
         modified: new Date(),
     }
 
 
-fetch(`http://localhost:9090/notes`, {
+fetch(`http://localhost:8000/api/notes`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'},
-        'body' : JSON.stringify(newNote),})
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newNote),
+    })
     .then(res => {
       if (!res.ok)
-        return res.json().then(e => Promise.reject(e))
-      return res.json()
+        return res.json().then((e) => Promise.reject(e))
+      return res.json();
     })
     .then((note) =>{
         this.context.addNote(note);
-        this.props.history.push(`/folder/${note.folderId}`)
+        this.props.history.push(`/folder/${note.folder}`);
       }) 
-      .catch(error => {
+      .catch((error) => {
         console.error({ error })
       })
     }

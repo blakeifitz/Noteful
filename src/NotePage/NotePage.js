@@ -11,20 +11,24 @@ import './NotePage.css';
 export default class NotePage extends React.Component {
   static contextType = NoteContext;
 
-  handleDeleteNote = noteId => {
-    this.props.history.push(`/`)
+  static default = {
+    notes: [],
   }
+  
 
   render(){
-    const {notes= []} = this.context;
+    const {notes} = this.context;
     const {noteId} = this.props.match.params;
+
     const note = grabNote(notes, noteId) || { content: '' }
     return(
     <section className='NotePage'>
       <Note
         id={note.id}
         name={note.name}
+        
         modified={note.modified}
+        history={this.props.history}
       />
       <div className='NotePageContent'>
         {note.content.split(/\n \r/).map((para, i) =>
