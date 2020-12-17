@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
 import NoteContext from '../NoteContext';
 import PropTypes from 'prop-types';
 import './Note.css';
