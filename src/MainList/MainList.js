@@ -22,7 +22,7 @@ export default class MainList extends React.Component {
     const {folderId} = this.props.match.params;
     this.props.history.push(`/`)
 
-  fetch(`http://localhost:8000/api/folders/${folderId}`, {
+  fetch(`https://noteful-bfitz.herokuapp.com/api/folders/${folderId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'},

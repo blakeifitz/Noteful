@@ -21,7 +21,7 @@ handleSubmit = e => {
     }
 
 
-fetch(`http://localhost:8000/api/notes`, {
+fetch(`https://noteful-bfitz.herokuapp.com/api/notes`, {
       method: 'POST',
       headers: {
         "content-type": "application/json",
