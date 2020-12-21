@@ -59,6 +59,10 @@ class App extends Component {
     }),
   ];
 
+  /* 
+  Find all notes in folder and delete from notes. Then set state on notes like line 53
+  */
+
   renderFolderList() {
     return (
       <>

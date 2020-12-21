@@ -33,7 +33,10 @@ export default class MainList extends React.Component {
     }
   })
   .then(() =>{
-    return this.context.deleteFolder(folderId)
+  const notes = grabNotesForFolder( [],folderId);
+    this.context.deleteFolder(folderId)
+    this.context.deleteNote(notes)
+    return
     }) 
     .catch(error => {
       console.error({ error })
