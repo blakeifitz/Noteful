@@ -38,9 +38,11 @@ class App extends Component {
       });
   }
   handleDeleteNote = (noteId) => {
+console.log("DELETE NOTE FUNCTION", noteId)
     this.setState({
       notes: this.state.notes.filter((note) => note.id !== noteId),
     });
+    console.log(this.state.notes)
   };
 
   handleDeleteFolder = (folderId) => {

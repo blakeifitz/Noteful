@@ -6,7 +6,6 @@ export const grabNote = (notes=[], noteId) =>{
 
 // if there is no folderId display all the notes, else return the notes in the folder with that Id
 export const grabNotesForFolder = (notes=[], folderId) =>{
-
   return (
   !folderId
     ?  notes

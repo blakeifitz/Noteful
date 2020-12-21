@@ -33,24 +33,27 @@ export default class MainList extends React.Component {
     }
   })
   .then(() =>{
-  const notes = grabNotesForFolder( [],folderId);
     this.context.deleteFolder(folderId)
-    this.context.deleteNote(notes)
-    return
+    let {notes=[]} = this.context;
+   notes = grabNotesForFolder(notes, folderId);
+   console.log("MAINLIST", notes)
+   notes.forEach(note => {
+    this.context.deleteNote(note.id)
+   })
     }) 
     .catch(error => {
       console.error({ error })
     })
   }
   render(){
-    const {folderId} = this.props.match.params;
+    let {folderId} = this.props.match.params;
     const {notes=[]} = this.context;
    const notesForFolder = grabNotesForFolder( notes,folderId);
   return (
     <section className='MainList'>
 
       <ul>
-        {notesForFolder.map(note =>
+        {notesForFolder.map(note => 
           <li key={note.id}>
             <Note
               id={note.id}
