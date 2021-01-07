@@ -22,7 +22,8 @@ class App extends Component {
       fetch(`https://noteful-bfitz.herokuapp.com/api/notes`),
       fetch(`https://noteful-bfitz.herokuapp.com/api/folders`),
     ])
-      .then(([notesRes, foldersRes]) => {
+      .then(([notesRes, foldersRes]) => 
+      {
         if (!notesRes.ok)
          return notesRes.json().then((e) => Promise.reject(e));
         if (!foldersRes.ok)
